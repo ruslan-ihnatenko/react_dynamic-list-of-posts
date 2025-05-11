@@ -58,6 +58,7 @@ export const PostDetails: React.FC<Props> = ({ post }) => {
 
       setComments(prevComments => [...prevComments, newComment]);
       setPostErrorMessage(null);
+      setIsFormVisible(false);
     } catch (error) {
       setPostErrorMessage('Failed to add comment');
     }

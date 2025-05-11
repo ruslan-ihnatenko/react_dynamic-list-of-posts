@@ -23,6 +23,17 @@ export const NewCommentForm: React.FC<Props> = ({ onSubmit }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const handleReset = () => {
+    setName('');
+    setEmail('');
+    setBody('');
+    setErrors({
+      name: '',
+      email: '',
+      body: '',
+    });
+  };
+
   const validateForm = (): boolean => {
     const newErrors: Errors = {
       name: '',
@@ -59,7 +70,7 @@ export const NewCommentForm: React.FC<Props> = ({ onSubmit }) => {
     setIsSubmitting(true);
     try {
       await onSubmit({ name, email, body });
-      setBody('');
+      handleReset();
     } finally {
       setIsSubmitting(false);
     }
@@ -93,17 +104,6 @@ export const NewCommentForm: React.FC<Props> = ({ onSubmit }) => {
 
         break;
     }
-  };
-
-  const handleReset = () => {
-    setName('');
-    setEmail('');
-    setBody('');
-    setErrors({
-      name: '',
-      email: '',
-      body: '',
-    });
   };
 
   return (
